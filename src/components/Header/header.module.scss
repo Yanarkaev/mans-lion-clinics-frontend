@@ -1,0 +1,40 @@
+.header {
+  background-color: rgba(10, 63, 188, 0.529);
+  transition: 0.3s;
+  font-weight: 600;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.541);
+  padding: 20px 0;
+  font-size: 18px;
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navLink {
+      color: #fff;
+      transition: 0.3s;
+      border-radius: 2px;
+      margin-right: 5px;
+      text-decoration: none;
+      padding: 10px 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        background: rgb(45, 116, 248);
+      }
+    }
+
+    .signinBtn{
+        border-radius: 1px;
+        font-size: 18px;
+        padding: 7px 20px;
+        transition: .3s;
+        background-color: rgb(0, 123, 6);
+        font-weight: 500;
+        
+    }
+  }
+}
