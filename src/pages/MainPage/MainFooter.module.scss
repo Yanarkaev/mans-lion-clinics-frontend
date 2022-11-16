@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    margin: 150px auto 0 auto;
+    background-color: #006cff;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    .numbers {
+        margin-right: 100px;
+    }
+    .icon {
+        height: 200px;
+        margin: 0 auto 30px auto;
+        img {
+            height: 100%;
+            
+        }
+    }
+    h2 {
+        color: #081f3e;
+       
+    }
+    h1 {
+        color: #fff;
+        margin: 30px auto;
+        font-size: 50px;
+    }
+    .city {
+        color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        width: 40%;
+        text-align: start;
+       
+    
+        .cityInfo {
+            width: 50%;
+    
+        }
+
+    }
+}

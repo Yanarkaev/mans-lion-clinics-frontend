@@ -5,6 +5,9 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.541);
   padding: 20px 0;
   font-size: 18px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
   .headerContainer {
     display: flex;
     justify-content: space-between;
