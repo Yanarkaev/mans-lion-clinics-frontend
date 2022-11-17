@@ -1,0 +1,76 @@
+
+.heartbeatloader {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  z-index: 9999;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.svgdraw {
+  top:0px;
+  left:0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.5);
+  z-index: 3;
+}
+.path {
+  stroke: rgba(155, 57, 57, 0.95);
+  stroke-width: 3;
+  stroke-dasharray: 1000px;
+  stroke-dashoffset: 1000px;    
+  animation: draw 1s infinite forwards normal linear;
+  animation-delay: .1s;
+  position: relative;
+}
+@keyframes draw {
+to {
+  stroke-dashoffset: 0;
+  opacity: 0;
+}
+}
+// .innercircle {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 50%;
+//   background-color: rgba(209, 28, 28, 0.705);
+//   position: absolute;
+//   z-index: 1;
+//   margin: auto;
+//   top: 0;
+//   opacity: 0.9;
+//   animation: innerbeat 1.5s infinite linear forwards;
+// }
+// @keyframes innerbeat {
+//   0% {transform: scale(1);}
+//   10% {transform: scale(1);}
+//   50% {transform: scale(1.15);}
+//   60% {transform: scale(1.05);}
+//   75% {transform: scale(1.2);}
+// }
+// .outercircle {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 50%;
+//   background-color: rgba(230, 92, 92, 0.774);
+//   box-shadow: 0 0 40px 20px #fff;
+//   position: absolute;
+//   z-index: -1;
+//   opacity: 0.9;
+//   top:0;
+//   left: 0;
+//   transform: scale(1.2);
+//   animation: outerbeat 1.5s infinite linear forwards;
+// }
+// @keyframes outerbeat {
+//   0% {transform: scale(1.2);}
+//   10% {transform: scale(1.2);}
+//   50% {transform: scale(1.3);}
+//   60% {transform: scale(1.25);}
+//   75% {transform: scale(1.3);}
+// }

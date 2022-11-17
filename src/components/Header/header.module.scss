@@ -1,10 +1,14 @@
 .header {
-  background-color: rgba(10, 63, 188, 0.529);
-  transition: 0.3s;
+  background-color: rgba(10, 63, 188, 0.725);
+  transition: 0.2s;
   font-weight: 600;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.541);
   padding: 20px 0;
-  font-size: 18px;
+  font-size: 20px;
+  position: fixed;
+  width: 100%;
+  
+  z-index: 100;
   .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -27,14 +31,21 @@
       }
     }
 
-    .signinBtn{
-        border-radius: 1px;
-        font-size: 18px;
-        padding: 7px 20px;
-        transition: .3s;
-        background-color: rgb(0, 123, 6);
-        font-weight: 500;
-        
+    .signinBtn {
+      border-radius: 1px;
+      font-size: 18px;
+      padding: 7px 20px;
+      transition: 0.3s;
+      background-color: rgb(0, 123, 6);
+      font-weight: 500;
     }
   }
+}
+
+.headerFixed {
+  transition: 0.6s;
+  background-color: rgb(3, 28, 88);
+  // font-size: 16px;
+
+  padding: 7px 0;
 }
