@@ -1,3 +1,4 @@
+
 import Header from './components/Header/Header';
 import "./App.scss";
 import MainPage from "./pages/MainPage/MainPage";
