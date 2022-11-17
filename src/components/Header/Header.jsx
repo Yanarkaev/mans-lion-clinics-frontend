@@ -20,22 +20,22 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="main" className={styles.navLink}>
+            <Link to="/" className={styles.navLink}>
               Главная
             </Link>
-            <Link to="about" className={styles.navLink}>
+            <Link to="/about" className={styles.navLink}>
               О нас
             </Link>
-            <Link to="entry" className={styles.navLink}>
+            <Link to="/entry" className={styles.navLink}>
               Запись
             </Link>
-            <Link to="contacts" className={styles.navLink}>
+            <Link to="/contacts" className={styles.navLink}>
               Контакты
             </Link>
           </Nav>
         </Navbar.Collapse>
         <Button className={styles.signinBtn} variant="success">
-          Войти
+          <Link to="/signup">Войти</Link>
         </Button>
       </Container>
     </Navbar>
