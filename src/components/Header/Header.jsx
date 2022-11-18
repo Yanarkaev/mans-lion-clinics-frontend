@@ -35,7 +35,7 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
         <Button className={styles.signinBtn} variant="success">
-          <Link to="/signup">Войти</Link>
+          <Link to="/signin">Войти</Link>
         </Button>
       </Container>
     </Navbar>
