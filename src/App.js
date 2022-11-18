@@ -19,7 +19,7 @@ function App() {
         <Route path="/worker" element={<SignUpWorker />} />
         <Route path="/sad" element={<Sad />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/entry" element={<Departments />} />
+        <Route path="/entry" element={<SingleDoctor />} /
       </Route>
     </Routes>
   );
