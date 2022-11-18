@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout/Layout";
 import SignUp from "./components/Authorization/SignUp/SignUp";
 import AboutPage from "./pages/About/AboutPage";
+import Departments from "./pages/Departments/Departments";
 import SignIn from "./components/Authorization/SignIn/SignIn";
 import Sad from "./components/Authorization/Sad/Sad";
 import SignUpWorker from "./components/Authorization/SignUpWorker/SignUpWorker";
@@ -18,9 +19,9 @@ function App() {
         <Route path="/worker" element={<SignUpWorker />} />
         <Route path="/sad" element={<Sad />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/entry" element={<Departments />} />
       </Route>
     </Routes>
   );
 }
-
 export default App;
