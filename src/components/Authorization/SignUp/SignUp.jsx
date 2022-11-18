@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import s from "./SignUp.module.scss";
 const SignUp = () => {
   const [fullName, setFullName] = useState("");
@@ -158,8 +159,8 @@ const SignUp = () => {
           Подтвердить
         </Button>
         <div className={s.links}>
-          <a href="/">Забыли Пароль?</a>
-          <a href="/">Сотрудникам организации</a>
+          <Link to="/signin">Войти в аккаунт</Link>
+          <Link to="/worker">Сотрудникам организации</Link>
         </div>
       </div>
     </div>
