@@ -1,0 +1,129 @@
+.wrapper {
+  .intro {
+    min-height: 400px;
+    position: relative;
+    &::before {
+      z-index: -1;
+      position: absolute;
+      padding-top: 12vh;
+      display: block;
+      content: "";
+      width: 100%;
+      background-color: red;
+      height: 100%;
+      background-image: url("../../assets/Contacts/contacts.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: brightness(50%);
+    }
+    h1 {
+      font-size: 60px;
+      margin: 0 auto;
+      padding: 30px 100px;
+      position: absolute;
+      color: rgb(255, 255, 255);
+      left: 50%;
+      bottom: 0;
+      text-shadow: rgba(0, 0, 0, 0.294) 0 0 10px;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 90%;
+        height: 5px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translate(-50%);
+        animation-duration: 2s;
+        animation-name: underlineIn;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.294);
+      }
+    }
+  }
+
+  .contactsInner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 50px auto 0;
+
+    .chatWrapper {
+      text-align: center;
+
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .contactMeans {
+      text-align: center;
+      box-sizing: content-box;
+      height: fit-content;
+      padding: 50px;
+      width: 100%;
+      max-width: 420px;
+      margin-left: auto;
+
+      h2{
+        padding-bottom: 10px;
+        border-bottom: 2px solid #000;
+        width: fit-content;
+        margin: 0 auto 10px;
+        padding: 0 20px 5px;
+      }
+      .item {
+        width: 100%;
+        display: flex;
+        // justify-content: space-between;
+        padding: 5px 0;
+        margin-bottom: 3px;
+
+        span {
+          font-weight: 600;
+          margin-right: 10px;
+        }
+
+        .iconsWrapper {
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+          .icon {
+            fill: rgb(126, 126, 126);
+            width: 25px;
+            transition: 0.2s;
+            cursor: pointer;
+            margin-right: 10px;
+
+            &:hover {
+              fill: rgb(1, 1, 151);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .yMapWrapper {
+    background-color: rgb(181, 181, 181);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.222);
+    width: 100%;
+    height: 550px;
+    max-width: 1000px;
+    overflow: hidden;
+    margin: 0 auto 50px;
+
+    .yMap {
+      width: 100%;
+      .yMapInner {
+        width: 100%;
+        background-color: green;
+      }
+    }
+  }
+}
