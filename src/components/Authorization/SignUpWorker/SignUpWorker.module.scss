@@ -1,0 +1,60 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://img.artlebedev.ru/everything/moya-poliklinika/exterior/images/mp-exterior-day.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  padding-top: 12.5vh;
+  .signup {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 60vw;
+    min-height: 60vh;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    background: rgba(10, 63, 188, 0.529);
+    h2 {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1rem;
+    }
+    .inputs {
+      width: 80%;
+      background-color: white;
+      padding: 0.25rem;
+      min-height: 40vh;
+      margin: auto;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .path {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: 1px solid;
+        min-height: 38vh;
+        padding: 1rem;
+        width: 50%;
+      }
+      .inp_img {
+        display: flex;
+        flex-direction: column;
+        button {
+          border: none;
+        }
+      }
+      .inp_code {
+        width: 95%;
+      }
+    }
+  }
+}

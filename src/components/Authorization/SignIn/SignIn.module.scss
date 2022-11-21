@@ -2,7 +2,7 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background-image: url("https://img.artlebedev.ru/everything/moya-poliklinika/exterior/images/mp-exterior-day.jpg");
   background-repeat: no-repeat;
@@ -14,29 +14,17 @@
     margin-top: 1rem;
     margin-bottom: 0;
   }
-  .helper_hover {
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.5rem;
-    min-width: 30%;
-    min-height: fit-content;
-    transition: background-color 1s;
-    background: rgba(10, 63, 188, 0.529);
-    margin-right: 1rem;
-    margin-left: auto;
-    padding: 1rem;
+  .info {
+    margin-top: 1rem;
+    margin-bottom: auto;
     font-weight: 500;
+    font-size: larger;
+    opacity: 1;
     color: white;
-    align-items: center;
+    background: rgba(10, 63, 188, 1);
+    border-radius: 0.25rem;
   }
-  .helper_no_hover {
-    color: white;
-    font-size: smaller;
-    width: 0%;
-    height: 0;
-    margin-right: 1rem;
-    margin-left: auto;
-  }
+
   .signup {
     display: flex;
     justify-content: center;
@@ -65,32 +53,6 @@
         outline: none;
         padding: 0.3rem 0.3rem;
         width: 90%;
-      }
-      button {
-        background: none;
-        border: none;
-        color: black;
-        font-size: larger;
-        padding: 0.5rem;
-        &:hover {
-          color: red;
-        }
-      }
-    }
-    .inputDate {
-      width: 100%;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: white;
-      padding: 0 10px;
-      border-bottom: 1px solid;
-      input {
-        background: none;
-        border: none;
-        outline: none;
-        padding: 0.3rem 0.3rem;
       }
       button {
         background: none;

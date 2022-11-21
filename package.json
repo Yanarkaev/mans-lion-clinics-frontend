@@ -9,16 +9,21 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.2",
     "framer-motion": "^7.6.7",
+    "history": "^5.3.0",
     "lottie-react": "^2.3.1",
+    "moment": "^2.29.4",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
+    "react-moment": "^1.1.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-yandex-maps": "^4.6.0",
     "redux": "^4.2.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "ymaps": "^0.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

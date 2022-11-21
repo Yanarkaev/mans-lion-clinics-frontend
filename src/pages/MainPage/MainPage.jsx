@@ -10,8 +10,8 @@ function MainPage() {
       <UncontrolledExample />
       <Description />
 
-      <div class={s.marqueeContainer}>
-        <p class={s.marquee}>
+      <div className={s.marqueeContainer}>
+        <p className={s.marquee}>
           Небитый не крашенный приор ю юхкш, связи довл &#160;
         </p>
       </div>

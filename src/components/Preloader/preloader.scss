@@ -1,38 +1,45 @@
-
 .heartbeatloader {
   position: absolute;
-  width: 500px;
-  height: 500px;
+
+  width: 200px;
+  height: 200px;
   z-index: 9999;
   margin: auto;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background-color: rgba(10, 63, 188, 0.529);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .svgdraw {
-  top:0px;
-  left:0px;
+  top: 0px;
+  left: 0px;
   position: absolute;
   width: 100%;
   height: 100%;
-  transform: scale(1.5);
+  transform: scale(3);
   z-index: 3;
 }
 .path {
   stroke: rgba(155, 57, 57, 0.95);
   stroke-width: 3;
   stroke-dasharray: 1000px;
-  stroke-dashoffset: 1000px;    
+  stroke-dashoffset: 1000px;
   animation: draw 1s infinite forwards normal linear;
-  animation-delay: .1s;
+  animation-delay: 0.1s;
   position: relative;
 }
 @keyframes draw {
-to {
-  stroke-dashoffset: 0;
-  opacity: 0;
-}
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
 }
 // .innercircle {
 //   width: 100%;
