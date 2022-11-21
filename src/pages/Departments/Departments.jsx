@@ -1,18 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Departments.module.scss";
 import icon from "../../assets/Departments/dep.svg";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getDepartments } from "../../features/departments/departmentsSlice";
 import header from "../../assets/Departments/header.png";
+import { getUsers } from "../../features/userSlice";
 function Departments() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDepartments());
+    dispatch(getUsers());
   }, [dispatch]);
 
   const departments = useSelector((state) => state.departments.departments);
+  const users = useSelector((state) => state.user.users);
+
+  const [filter, setFilter] = useState("");
+
+  const doctors = users.filter((user) =>
+    filter
+      ? user.role === "doctor" && user.department === filter
+      : user.role === "doctor"
+  );
+  console.log(doctors);
   const loading = useSelector((state) => state.departments.loading);
 
   const textAnimation = {
@@ -39,7 +51,7 @@ function Departments() {
   };
 
   if (loading) {
-    return "";
+    return "загрузка";
   }
 
   return (
@@ -54,13 +66,17 @@ function Departments() {
           variants={textAnimation}
           className={s.aside}
         >
-          <div className={s.logo}>
+          <div onClick={() => setFilter("")} className={s.logo}>
             <img src={icon} alt="" />
           </div>
           <div className={s.departmants}>
             {departments.map((item) => {
               return (
-                <div key={item._id} className={s.name}>
+                <div
+                  onClick={() => setFilter(item._id)}
+                  key={item._id}
+                  className={s.name}
+                >
                   <span>{item.name}</span>
                 </div>
               );
@@ -73,113 +89,27 @@ function Departments() {
           variants={mainAnimation}
           className={s.main}
         >
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}>
-                <img
-                  src="https://bestclinic.ru/upload/resize_cache/iblock/451/480_320_2/v_tualet_po_bolshomu_s_krovyu2_1024x683.jpg"
-                  alt=""
-                />
+          {doctors.map((item) => {
+            return (
+              <div className={s.departmantCard}>
+                <div className={s.photoContainer}>
+                  <div className={s.photo}>
+                    <img
+                      src={`http://localhost:3001/${item.avatarImg}`}
+                      alt="Аватар"
+                    />
+                  </div>
+                </div>
+                <div className={s.doctorName}>
+                  <span>{item.fullName}</span>
+                </div>
+                <div className={s.jobTitle}>
+                  <span>{item.jobTitle}</span>
+                </div>
+                <button>Записаться</button>
               </div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
-
-          <div className={s.departmantCard}>
-            <div className={s.photoContainer}>
-              <div className={s.photo}></div>
-            </div>
-            <div className={s.doctorName}>
-              <span>Dr.Жатланхан Артурпиевич</span>
-            </div>
-            <div className={s.jobTitle}>
-              <span>Практолог</span>
-            </div>
-            <button>Записаться</button>
-          </div>
+            );
+          })}
         </motion.main>
       </div>
     </>
