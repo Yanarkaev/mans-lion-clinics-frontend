@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signUpUser } from "../../../features/userSlice";
+import { signInUser, signUpUser } from "../../../features/userSlice";
 import loadAuth from "../animations/loadAuth.json";
 import s from "./SignUp.module.scss";
 import Lottie from "lottie-react";
@@ -21,6 +21,7 @@ const SignUp = () => {
   const error = useSelector((state) => state.user.error);
   const loading = useSelector((state) => state.user.loading);
   const signUp = useSelector((state) => state.user.signUp);
+  const signIn = useSelector((state) => state.user.signIn);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,9 +67,13 @@ const SignUp = () => {
 
   useEffect(() => {
     if (signUp) {
-      navigate("/signin");
+      dispatch(signInUser({ login, password }));
     }
-  }, [dispatch, navigate, signUp]);
+  }, [dispatch, navigate, signUp, login, password]);
+
+  if (signIn) {
+    navigate("/");
+  }
 
   return (
     <div className={s.main}>
