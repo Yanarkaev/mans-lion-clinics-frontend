@@ -8,6 +8,7 @@ const initialState = {
   role: "",
   signIn: false,
   signUp: false,
+  users: [],
 };
 
 export const signUpUser = createAsyncThunk(
@@ -74,6 +75,15 @@ export const signInUser = createAsyncThunk(
   }
 );
 
+export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
+  try {
+    const res = await fetch("//localhost:3001/user");
+    return res.json();
+  } catch (error) {
+    thunkAPI.rejectWithValue(error);
+  }
+});
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -83,6 +93,7 @@ export const userSlice = createSlice({
       state.token = null;
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state, action) => {
@@ -109,6 +120,21 @@ export const userSlice = createSlice({
         state.loading = false;
         state.signIn = true;
         localStorage.setItem("token", action.payload.token);
+      })
+
+      //Получить юзеров
+
+      .addCase(getUsers.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(getUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
