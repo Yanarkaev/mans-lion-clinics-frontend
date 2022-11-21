@@ -10,6 +10,7 @@ import SignIn from "./components/Authorization/SignIn/SignIn";
 import Sad from "./components/Authorization/Sad/Sad";
 import SignUpWorker from "./components/Authorization/SignUpWorker/SignUpWorker";
 import SingleDoctor from "./pages/SingleDoctor/SingleDoctor";
+import ContactsPage from "./pages/Contacts/ContactsPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/entry" element={<Departments />} />
         <Route path="/entry/doctor/:id" element={<SingleDoctor />} />
+        <Route path="/contacts" element={<ContactsPage />} />
       </Route>
     </Routes>
   );
