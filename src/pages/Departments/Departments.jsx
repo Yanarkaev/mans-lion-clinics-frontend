@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Departments.module.scss";
 import icon from "../../assets/Departments/dep.svg";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 function Departments() {
   const textAnimation = {
     hidden: {
@@ -67,7 +68,14 @@ function Departments() {
           <div className={s.jobTitle}>
             <span>Практолог</span>
           </div>
-          <button>Записаться</button>
+          <button>
+            <Link
+              to="/entry/doctor/:id"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Записаться
+            </Link>
+          </button>
         </div>
 
         <div className={s.departmantCard}>

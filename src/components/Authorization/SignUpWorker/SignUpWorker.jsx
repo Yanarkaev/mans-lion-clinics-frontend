@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signUpUser } from "../../../features/userSlice";
 import s from "./SignUpWorker.module.scss";
 
 const SignUpWorker = () => {
@@ -11,6 +14,32 @@ const SignUpWorker = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [birthDay, setBirthDay] = useState("");
   const [code, setCode] = useState("");
+  const [schedule, setSchedule] = useState("");
+
+  const signUp = useSelector((state) => state.user.signUp);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (signUp) {
+      navigate("/signin");
+    }
+  }, [dispatch, navigate, signUp]);
+  const handleSignUp = () => {
+    dispatch(
+      signUpUser({
+        fullName,
+        login,
+        password,
+        birthDay,
+        department,
+        code,
+        img,
+        jobTitle,
+        schedule,
+      })
+    );
+  };
 
   return (
     <div className={s.main}>
@@ -22,8 +51,7 @@ const SignUpWorker = () => {
               <h3>Фотография</h3>
               <input
                 type="file"
-                value={img}
-                onChange={(e) => setImg(e.target.value)}
+                onChange={(e) => setImg(e.target.files[0])}
               ></input>
             </div>
             <div className={s.input}>
@@ -68,6 +96,12 @@ const SignUpWorker = () => {
               }}
             ></input>
             <input
+              type="text"
+              placeholder="График работы"
+              value={schedule}
+              onChange={(e) => setSchedule(e.target.value)}
+            ></input>
+            <input
               type="date"
               value={birthDay}
               onChange={(e) => setBirthDay(e.target.value)}
@@ -79,7 +113,7 @@ const SignUpWorker = () => {
               }}
             >
               {department ? "" : <option>Выберите отделение</option>}
-              <option>Chocolate</option>
+              <option value="637371a2abee5bb6b7985508">Терапевт</option>
               <option>Coconut</option>
               <option>Mint</option>
               <option>Strawberry</option>
@@ -87,7 +121,11 @@ const SignUpWorker = () => {
             </select>
           </div>
         </div>
-        <Button variant="primary" style={{ margin: "auto" }}>
+        <Button
+          variant="primary"
+          style={{ margin: "auto" }}
+          onClick={handleSignUp}
+        >
           Подтвердить
         </Button>
       </div>

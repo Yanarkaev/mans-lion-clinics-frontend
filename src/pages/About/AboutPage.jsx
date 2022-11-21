@@ -1,5 +1,4 @@
 import React from "react";
-import Preloader from "../../components/Preloader/Preloader";
 import styles from "./aboutPage.module.scss";
 
 const AboutPage = () => {

@@ -1,5 +1,6 @@
 import "./App.scss";
 import MainPage from "./pages/MainPage/MainPage";
+
 import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout/Layout";
 import SignUp from "./components/Authorization/SignUp/SignUp";
@@ -8,6 +9,7 @@ import Departments from "./pages/Departments/Departments";
 import SignIn from "./components/Authorization/SignIn/SignIn";
 import Sad from "./components/Authorization/Sad/Sad";
 import SignUpWorker from "./components/Authorization/SignUpWorker/SignUpWorker";
+import SingleDoctor from "./pages/SingleDoctor/SingleDoctor";
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
         <Route path="/worker" element={<SignUpWorker />} />
         <Route path="/sad" element={<Sad />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/entry" element={<SingleDoctor />} /
+        <Route path="/entry" element={<Departments />} />
+        <Route path="/entry/doctor/:id" element={<SingleDoctor />} />
       </Route>
     </Routes>
   );
