@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { signUpUser } from "../../../features/userSlice";
+import { getDepartments } from "../../../features/departments/departmentsSlice";
+import { signInUser, signUpUser } from "../../../features/userSlice";
 import s from "./SignUpWorker.module.scss";
 
 const SignUpWorker = () => {
@@ -15,12 +16,13 @@ const SignUpWorker = () => {
   const [birthDay, setBirthDay] = useState("");
   const [code, setCode] = useState("");
   const [schedule, setSchedule] = useState("");
-
   const signUp = useSelector((state) => state.user.signUp);
-
+  const dep = useSelector((state) => state.departments);
+  console.log(dep);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(getDepartments());
     if (signUp) {
       navigate("/signin");
     }
@@ -40,6 +42,12 @@ const SignUpWorker = () => {
       })
     );
   };
+
+  useEffect(() => {
+    if (signUp) {
+      dispatch(signInUser({ login, password }));
+    }
+  }, [dispatch, navigate, signUp, login, password]);
 
   return (
     <div className={s.main}>
@@ -113,11 +121,10 @@ const SignUpWorker = () => {
               }}
             >
               {department ? "" : <option>Выберите отделение</option>}
-              <option value="637371a2abee5bb6b7985508">Терапевт</option>
-              <option>Coconut</option>
-              <option>Mint</option>
-              <option>Strawberry</option>
-              <option>Vanilla</option>
+              {!dep.loading &&
+                dep.departments.map((item) => {
+                  return <option value={item._id}>{item.name}</option>;
+                })}
             </select>
           </div>
         </div>
