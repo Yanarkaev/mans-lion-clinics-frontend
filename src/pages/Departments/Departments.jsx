@@ -50,6 +50,20 @@ function Departments() {
     },
   };
 
+  const departmentsAnimation = {
+    hidden: {
+      // y: 300,
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      // y: 0,
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  };
+
   if (loading) {
     return "загрузка";
   }
@@ -91,7 +105,13 @@ function Departments() {
         >
           {doctors.map((item) => {
             return (
-              <div className={s.departmantCard}>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={departmentsAnimation}
+                viewport={{ amount: 1, once: true }}
+                className={s.departmantCard}
+              >
                 <div className={s.photoContainer}>
                   <div className={s.photo}>
                     <img
@@ -107,7 +127,7 @@ function Departments() {
                   <span>{item.jobTitle}</span>
                 </div>
                 <button>Записаться</button>
-              </div>
+              </motion.div>
             );
           })}
         </motion.main>
