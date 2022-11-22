@@ -51,6 +51,10 @@ const Header = () => {
             <Link to="/signin">Войти</Link>
           )}
         </Button>
+
+        <Link to="/account">
+          <div className={styles.account}></div>
+        </Link>
       </Container>
     </Navbar>
   );

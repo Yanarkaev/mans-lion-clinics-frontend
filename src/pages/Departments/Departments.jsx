@@ -15,6 +15,7 @@ function Departments() {
   }, [dispatch]);
 
   const departments = useSelector((state) => state.departments.departments);
+
   const users = useSelector((state) => state.user.users);
 
   const [filter, setFilter] = useState("");
