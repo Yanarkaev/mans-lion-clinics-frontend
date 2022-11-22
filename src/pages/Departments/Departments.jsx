@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDepartments } from "../../features/departments/departmentsSlice";
 import header from "../../assets/Departments/header.png";
 import { getUsers } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 function Departments() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDepartments());
@@ -106,7 +108,9 @@ function Departments() {
                 <div className={s.jobTitle}>
                   <span>{item.jobTitle}</span>
                 </div>
-                <button>Записаться</button>
+                <button onClick={() => navigate(`/entry/doctor/${item._id}`)}>
+                  Записаться
+                </button>
               </div>
             );
           })}
