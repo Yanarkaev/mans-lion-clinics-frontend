@@ -9,6 +9,7 @@ const initialState = {
   signIn: false,
   signUp: false,
   users: [],
+  doctorById: "",
 };
 
 export const signUpUser = createAsyncThunk(
@@ -83,7 +84,17 @@ export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
     thunkAPI.rejectWithValue(error);
   }
 });
-
+export const getInfoDoctor = createAsyncThunk(
+  "doctor/fetch",
+  async (id, thunkAPI) => {
+    try {
+      const res = await fetch(`//localhost:3001/user/${id}`);
+      return res.json();
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -135,6 +146,19 @@ export const userSlice = createSlice({
       .addCase(getUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(getInfoDoctor.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getInfoDoctor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getInfoDoctor.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.doctorById = action.payload;
       });
   },
 });
