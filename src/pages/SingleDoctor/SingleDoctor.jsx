@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./singleDoctor.module.scss";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getInfoDoctor } from "../../features/userSlice";
+import moment from "moment";
 
 const SingleDoctor = () => {
   const cardAnimation = {
@@ -14,13 +18,41 @@ const SingleDoctor = () => {
       transition: { type: "spring", stiffness: 40 },
     },
   };
+  const { id } = useParams();
+  const doctor = useSelector((state) => state.user.doctorById);
+  const loading = useSelector((state) => state.user.loading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getInfoDoctor(id));
+  }, [dispatch, id]);
+
+  if (loading || !doctor) {
+    return "";
+  }
+
+  console.log(doctor);
+
+  const handleTime = () => {
+    const times = [];
+    let time = moment(doctor.schedule.split("-")[0], "HH:mm")
+      .add(30, "m")
+      .format("HH:mm");
+    while (
+      moment(time, "HH:mm").isBetween(
+        moment(doctor.schedule.split("-")[0], "HH:mm"),
+        moment(doctor.schedule.split("-")[1], "HH:mm")
+      )
+    ) {
+      times.push(moment(time, "HH:mm").format("HH:mm"));
+      time = moment(time, "HH:mm").add(30, "m");
+    }
+    return times.map((item) => {
+      return <button>{moment(item, "HH:mm").format("HH:mm")}</button>;
+    });
+  };
+
   return (
-    <div
-      // initial="hidden"
-      // whileInView="visible"
-      // variants={textAnimation}
-      className={s.wrapper}
-    >
+    <div className={s.wrapper}>
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -31,11 +63,13 @@ const SingleDoctor = () => {
           <img src="asdd" alt="Фото" />
         </div>
         <div className={s.doctorInfo}>
-          <div>Доктор докторович</div>
-          <div>Кардиология</div>
-          <div>40 лет</div>
-          <div>Стаж: 15 лет</div>
-          <div>График работы: с 10:00 до 18:00</div>
+          <div>{doctor.fullName}</div>
+          <div>{doctor.jobTitle}</div>
+          <div>В компании с {doctor.birthDay.split("-")[0]} года</div>
+          <div>
+            График работы: с {doctor.schedule.split("-")[0]} до{" "}
+            {doctor.schedule.split("-")[1]}
+          </div>
         </div>
       </motion.div>
 
@@ -56,21 +90,7 @@ const SingleDoctor = () => {
           <div className={s.timeBlock}>
             <h2>Время: </h2>
 
-            <div className={s.timeBtns}>
-              <button disabled>10:00</button>
-              <button>10:30</button>
-              <button>11:00</button>
-              <button>11:30</button>
-              <button>13:00</button>
-              <button>13:30</button>
-              <button>14:00</button>
-              <button>15:00</button>
-              <button>15:30</button>
-              <button>16:00</button>
-              <button>16:30</button>
-              <button>17:00</button>
-              <button>17:30</button>
-            </div>
+            <div className={s.timeBtns}>{handleTime()}</div>
           </div>
         </div>
       </div>
