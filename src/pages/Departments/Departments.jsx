@@ -131,7 +131,7 @@ function Departments() {
                 <button onClick={() => navigate(`/entry/doctor/${item._id}`)}>
                   Записаться
                 </button>
-              </div>
+              </motion.div>
             );
           })}
         </motion.main>
