@@ -16,7 +16,6 @@ const SignIn = () => {
   const handleSignIn = () => {
     dispatch(signInUser({ login, password }));
   };
-  console.log(signIn);
   useEffect(() => {
     if (signIn) {
       navigate("/");

@@ -34,7 +34,6 @@ const SingleDoctor = () => {
   );
 
   const user = useSelector((state) => state.user);
-  console.log(user);
 
   const [recordTime, setRecordTime] = useState("");
   const [show, setShow] = useState("");
@@ -131,7 +130,7 @@ const SingleDoctor = () => {
     setShow(false);
   };
   if (acceptOrder) {
-    navigate("/");
+    navigate("/account");
   }
   if (loading || !doctor || acceptOrder.length === 0) {
     return "";

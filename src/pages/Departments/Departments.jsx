@@ -27,7 +27,6 @@ function Departments() {
       ? user.role === "doctor" && user.department === filter
       : user.role === "doctor"
   );
-  console.log(doctors);
   const loading = useSelector((state) => state.departments.loading);
 
   const textAnimation = {

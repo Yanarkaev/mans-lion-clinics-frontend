@@ -71,6 +71,7 @@ export const signInUser = createAsyncThunk(
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error);
       }
+      localStorage.setItem("token", data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -144,6 +145,11 @@ export const userSlice = createSlice({
     userLogout: (state, action) => {
       localStorage.removeItem("token");
       state.token = null;
+      state.signIn = false;
+      state.signUp = false;
+    },
+    isUserSignIn: (state, action) => {
+      state.token = localStorage.getItem("token");
     },
   },
 
@@ -169,10 +175,9 @@ export const userSlice = createSlice({
         localStorage.removeItem("token");
       })
       .addCase(signInUser.fulfilled, (state, action) => {
-        console.log(action.payload.token);
         state.loading = false;
         state.signIn = true;
-        localStorage.setItem("token", action.payload.token);
+        state.token = action.payload.token;
       })
 
       //Получить юзеров
@@ -234,5 +239,5 @@ export const userSlice = createSlice({
       });
   },
 });
-export const { userLogout } = userSlice.actions;
+export const { userLogout, isUserSignIn } = userSlice.actions;
 export default userSlice.reducer;
