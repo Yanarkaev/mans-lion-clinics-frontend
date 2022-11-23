@@ -10,6 +10,8 @@ const initialState = {
   signUp: false,
   users: [],
   doctorById: "",
+  recordByDoctor: [],
+  acceptOrder: false,
 };
 
 export const signUpUser = createAsyncThunk(
@@ -33,12 +35,12 @@ export const signUpUser = createAsyncThunk(
       formData.append("fullName", fullName);
       formData.append("login", login);
       formData.append("password", password);
-      formData.append("code", code);
+      formData.append("code", code ? code : "");
       formData.append("birthDay", birthDay);
       formData.append("img", img);
-      formData.append("department", department);
-      formData.append("jobTitle", jobTitle);
-      formData.append("schedule", schedule);
+      formData.append("department", department ? department : "000000000000");
+      formData.append("jobTitle", jobTitle ? jobTitle : "");
+      formData.append("schedule", schedule ? schedule : "");
       const res = await fetch("http://localhost:3001/user/signup", {
         method: "POST",
         headers: {
@@ -75,7 +77,6 @@ export const signInUser = createAsyncThunk(
     }
   }
 );
-
 export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
   try {
     const res = await fetch("//localhost:3001/user");
@@ -95,6 +96,47 @@ export const getInfoDoctor = createAsyncThunk(
     }
   }
 );
+export const addOrder = createAsyncThunk(
+  "order/post",
+  async ({ _doctorId, date, time }, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:3001/record/", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          _doctorId,
+          date,
+          time,
+        }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getRecordsByDoctor = createAsyncThunk(
+  "recordByDoctor/fetch",
+  async (id, thunkAPI) => {
+    try {
+      const data = await fetch(`http://localhost:3001/record/doctor/${id}`);
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data.json();
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -142,6 +184,7 @@ export const userSlice = createSlice({
       .addCase(getUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
+        state.acceptOrder = false;
       })
       .addCase(getUsers.rejected, (state, action) => {
         state.loading = false;
@@ -159,6 +202,35 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.doctorById = action.payload;
+      })
+      .addCase(getRecordsByDoctor.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.recordByDoctor = action.payload;
+      })
+      .addCase(getRecordsByDoctor.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getRecordsByDoctor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(addOrder.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.acceptOrder = false;
+      })
+      .addCase(addOrder.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+        state.acceptOrder = false;
+      })
+      .addCase(addOrder.fulfilled, (state, action) => {
+        state.loading = true;
+        state.error = null;
+        state.recordByDoctor.push(action.payload);
+        state.acceptOrder = true;
       });
   },
 });

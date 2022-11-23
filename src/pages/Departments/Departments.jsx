@@ -17,6 +17,7 @@ function Departments() {
   }, [dispatch]);
 
   const departments = useSelector((state) => state.departments.departments);
+
   const users = useSelector((state) => state.user.users);
 
   const [filter, setFilter] = useState("");
@@ -105,7 +106,7 @@ function Departments() {
           variants={mainAnimation}
           className={s.main}
         >
-          {doctors.map((item) => {
+          {doctors.map((item, index) => {
             return (
               <motion.div
                 initial="hidden"
@@ -113,6 +114,7 @@ function Departments() {
                 variants={departmentsAnimation}
                 viewport={{ amount: 1, once: true }}
                 className={s.departmantCard}
+                key={index}
               >
                 <div className={s.photoContainer}>
                   <div className={s.photo}>
