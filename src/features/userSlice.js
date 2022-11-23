@@ -12,6 +12,7 @@ const initialState = {
   doctorById: "",
   recordByDoctor: [],
   acceptOrder: false,
+  userRecords: [],
 };
 
 export const signUpUser = createAsyncThunk(
@@ -137,6 +138,45 @@ export const getRecordsByDoctor = createAsyncThunk(
     }
   }
 );
+export const getRecordsByRole = createAsyncThunk(
+  "recordsrole/fetch",
+  async (_, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:3001/record/role", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const removeRecord = createAsyncThunk(
+  "records/remove",
+  async (id, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:3001/record/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -232,10 +272,36 @@ export const userSlice = createSlice({
         state.acceptOrder = false;
       })
       .addCase(addOrder.fulfilled, (state, action) => {
-        state.loading = true;
+        state.loading = false;
         state.error = null;
         state.recordByDoctor.push(action.payload);
         state.acceptOrder = true;
+      })
+      .addCase(getRecordsByRole.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userRecords = action.payload;
+      })
+      .addCase(getRecordsByRole.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getRecordsByRole.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeRecord.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeRecord.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(removeRecord.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userRecords = action.payload;
       });
   },
 });

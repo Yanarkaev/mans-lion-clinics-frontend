@@ -1,7 +1,5 @@
-import { useTime } from "framer-motion";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../features/userSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 import Doctor from "./Doctor/Doctor";
 import User from "./User/User";
 

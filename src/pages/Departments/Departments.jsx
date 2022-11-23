@@ -7,10 +7,14 @@ import { getDepartments } from "../../features/departments/departmentsSlice";
 import header from "../../assets/Departments/header.png";
 import { getUsers } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import preloader from "./animation/preloader.json";
 function Departments() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const loadingUser = useSelector((state) => state.user.loading);
+  const loadingDep = useSelector((state) => state.departments.loading);
+  console.log(loadingUser, loadingDep);
   useEffect(() => {
     dispatch(getDepartments());
     dispatch(getUsers());
@@ -27,7 +31,6 @@ function Departments() {
       ? user.role === "doctor" && user.department === filter
       : user.role === "doctor"
   );
-  const loading = useSelector((state) => state.departments.loading);
 
   const textAnimation = {
     hidden: {
@@ -64,8 +67,15 @@ function Departments() {
     },
   };
 
-  if (loading) {
-    return "загрузка";
+  if (loadingUser || loadingDep) {
+    return (
+      <div>
+        <Lottie
+          animationData={preloader}
+          style={{ width: "50vw", margin: "auto", paddingTop: "10rem" }}
+        ></Lottie>
+      </div>
+    );
   }
 
   return (
