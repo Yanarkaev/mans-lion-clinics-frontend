@@ -105,7 +105,7 @@ function Departments() {
           variants={mainAnimation}
           className={s.main}
         >
-          {doctors.map((item) => {
+          {doctors.map((item, index) => {
             return (
               <motion.div
                 initial="hidden"
@@ -113,6 +113,7 @@ function Departments() {
                 variants={departmentsAnimation}
                 viewport={{ amount: 1, once: true }}
                 className={s.departmantCard}
+                key={index}
               >
                 <div className={s.photoContainer}>
                   <div className={s.photo}>
@@ -131,7 +132,7 @@ function Departments() {
                 <button onClick={() => navigate(`/entry/doctor/${item._id}`)}>
                   Записаться
                 </button>
-              </div>
+              </motion.div>
             );
           })}
         </motion.main>
