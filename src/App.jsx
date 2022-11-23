@@ -12,6 +12,7 @@ import SignUpWorker from "./components/Authorization/SignUpWorker/SignUpWorker";
 import SingleDoctor from "./pages/SingleDoctor/SingleDoctor";
 import ContactsPage from "./pages/Contacts/ContactsPage";
 import AdminPage from './pages/AdminPage/AdminPage';
+import Account from "./pages/PersonalAccounts/Account";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/entry/doctor/:id" element={<SingleDoctor />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/account" element={<Account />} />
       </Route>
     </Routes>
   );
