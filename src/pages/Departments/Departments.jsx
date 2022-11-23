@@ -53,12 +53,10 @@ function Departments() {
 
   const departmentsAnimation = {
     hidden: {
-      // y: 300,
       opacity: 0,
       scale: 0.8,
     },
     visible: {
-      // y: 0,
       scale: 1,
       opacity: 1,
       transition: { duration: 0.5 },
