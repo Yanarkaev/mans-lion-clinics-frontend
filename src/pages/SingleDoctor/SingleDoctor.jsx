@@ -9,6 +9,8 @@ import {
   getRecordsByDoctor,
 } from "../../features/userSlice";
 import moment from "moment";
+import Lottie from "lottie-react";
+import errorAnim from "./animation/errorAnim.json";
 
 const SingleDoctor = () => {
   const cardAnimation = {
@@ -26,15 +28,13 @@ const SingleDoctor = () => {
   const doctor = useSelector((state) => state.user.doctorById);
   const loading = useSelector((state) => state.user.loading);
   const records = useSelector((state) => state.user.recordByDoctor);
-
   const acceptOrder = useSelector((state) => state.user.acceptOrder);
   const error = useSelector((state) => state.user.error);
   const [recordDay, setRecordDay] = useState(
     moment().add(1, "d").format("YYYY.MM.DD")
   );
 
-  const user = useSelector((state) => state.user);
-  console.log(user);
+  // const user = useSelector((state) => state.user);
 
   const [recordTime, setRecordTime] = useState("");
   const [show, setShow] = useState("");
@@ -84,6 +84,7 @@ const SingleDoctor = () => {
       ).length
         ? "Disabled"
         : "";
+
       return (
         <button
           key={item}
@@ -113,6 +114,7 @@ const SingleDoctor = () => {
         moment(item, "YYYY.MM.DD").format("YYYY.MM.DD") === recordDay
           ? { background: "rgb(47, 71, 131)" }
           : {};
+
       return (
         <button
           key={item}
@@ -128,16 +130,12 @@ const SingleDoctor = () => {
   };
   const handleOrder = () => {
     dispatch(addOrder({ _doctorId: id, time: recordTime, date: recordDay }));
-    setShow(false);
   };
   if (acceptOrder) {
-    navigate("/");
+    navigate("/account");
   }
   if (loading || !doctor || acceptOrder.length === 0) {
     return "";
-  }
-  if (error) {
-    navigate("/");
   }
 
   return (
@@ -167,6 +165,26 @@ const SingleDoctor = () => {
             <div className={s.btns}>
               <button onClick={() => setShow(false)}>Изменить</button>
               <button onClick={handleOrder}>Подтвердить</button>
+            </div>
+            <div>
+              {error ? (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Lottie
+                    animationData={errorAnim}
+                    style={{ width: "10rem" }}
+                  ></Lottie>
+                  <div style={{ color: "red" }}>{error}</div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

@@ -18,7 +18,6 @@ const SignUpWorker = () => {
   const [schedule, setSchedule] = useState("");
   const signUp = useSelector((state) => state.user.signUp);
   const dep = useSelector((state) => state.departments);
-  console.log(dep);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {

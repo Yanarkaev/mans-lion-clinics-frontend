@@ -12,6 +12,7 @@ const initialState = {
   doctorById: "",
   recordByDoctor: [],
   acceptOrder: false,
+  userRecords: [],
 };
 
 export const signUpUser = createAsyncThunk(
@@ -71,6 +72,7 @@ export const signInUser = createAsyncThunk(
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error);
       }
+      localStorage.setItem("token", data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -136,6 +138,45 @@ export const getRecordsByDoctor = createAsyncThunk(
     }
   }
 );
+export const getRecordsByRole = createAsyncThunk(
+  "recordsrole/fetch",
+  async (_, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:3001/record/role", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const removeRecord = createAsyncThunk(
+  "records/remove",
+  async (id, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:3001/record/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -144,6 +185,11 @@ export const userSlice = createSlice({
     userLogout: (state, action) => {
       localStorage.removeItem("token");
       state.token = null;
+      state.signIn = false;
+      state.signUp = false;
+    },
+    isUserSignIn: (state, action) => {
+      state.token = localStorage.getItem("token");
     },
   },
 
@@ -169,10 +215,9 @@ export const userSlice = createSlice({
         localStorage.removeItem("token");
       })
       .addCase(signInUser.fulfilled, (state, action) => {
-        console.log(action.payload.token);
         state.loading = false;
         state.signIn = true;
-        localStorage.setItem("token", action.payload.token);
+        state.token = action.payload.token;
       })
 
       //Получить юзеров
@@ -227,12 +272,38 @@ export const userSlice = createSlice({
         state.acceptOrder = false;
       })
       .addCase(addOrder.fulfilled, (state, action) => {
-        state.loading = true;
+        state.loading = false;
         state.error = null;
         state.recordByDoctor.push(action.payload);
         state.acceptOrder = true;
+      })
+      .addCase(getRecordsByRole.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userRecords = action.payload;
+      })
+      .addCase(getRecordsByRole.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getRecordsByRole.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeRecord.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeRecord.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(removeRecord.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.userRecords = action.payload;
       });
   },
 });
-export const { userLogout } = userSlice.actions;
+export const { userLogout, isUserSignIn } = userSlice.actions;
 export default userSlice.reducer;

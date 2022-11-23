@@ -3,18 +3,24 @@ import s from "./User.module.scss";
 import icon from "../../../assets/PersonalAccounts/icon.svg";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../../features/userSlice";
+import { getRecordsByRole, getUsers } from "../../../features/userSlice";
+import moment from "moment/moment";
+import "moment/locale/ru";
+import Lottie from "lottie-react";
+import avatar from "./animation/userAv.json";
 
 function User() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUsers());
+    dispatch(getRecordsByRole());
   }, [dispatch]);
 
   const token = useSelector((state) => state.user.token);
   const users = useSelector((state) => state.user.users);
-
+  const loading = useSelector((state) => state.user.loading);
+  const records = useSelector((state) => state.user.userRecords);
   const parseJwt = (token) => {
     let base64Url = token.split(".")[1];
     let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -30,7 +36,9 @@ function User() {
 
     return JSON.parse(jsonPayload);
   };
-
+  if (loading) {
+    return "";
+  }
   const parsedJwt = parseJwt(token);
 
   const textAnimation = {
@@ -59,7 +67,7 @@ function User() {
               <div className={s.card}>
                 <div className={s.doctorInfo}>
                   <div className={s.photo}>
-                    <img src="" alt="" />
+                    <Lottie animationData={avatar} />
                   </div>
                   <div className={s.description}>
                     <h4>{item.fullName}</h4>
@@ -96,19 +104,28 @@ function User() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Жалмурзбек Картофанович Гаджимурадов</td>
-                      <td>Практолог</td>
-                      <td>13:30</td>
-                      <td>Тахан 1уьйран</td>
-                    </tr>
+                    {records.map((item, index) => {
+                      return (
+                        <tr key={item._id}>
+                          <td>{index + 1}</td>
+                          <td>{item._doctorId.fullName}</td>
+                          <td>{item._doctorId.jobTitle}</td>
+                          <td>{item.time}</td>
+                          <td>
+                            {moment(item.date, "YYYY.MM.DD")
+                              .locale("RU")
+                              .format("LL")}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
             </div>
           );
         }
+        return "";
       })}
     </motion.div>
   );
