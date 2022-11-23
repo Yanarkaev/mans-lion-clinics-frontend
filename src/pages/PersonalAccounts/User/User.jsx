@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import s from "./Doctor.module.scss";
+import s from "./User.module.scss";
 import icon from "../../../assets/PersonalAccounts/icon.svg";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../features/userSlice";
-function Doctor() {
+
+function User() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,20 +53,17 @@ function Doctor() {
       className={s.container}
     >
       {users.map((item) => {
-        if (item._id === parsedJwt.id && item.role === "doctor") {
+        if (item._id === parsedJwt.id && item.role === "user") {
           return (
             <div key={item._id}>
               <div className={s.card}>
                 <div className={s.doctorInfo}>
                   <div className={s.photo}>
-                    <img
-                      src={`http://localhost:3001/${item.avatarImg}`}
-                      alt=""
-                    />
+                    <img src="" alt="" />
                   </div>
                   <div className={s.description}>
                     <h4>{item.fullName}</h4>
-                    <h5>{item.jobTitle}</h5>
+                    <h5>Пациент</h5>
                     <div className={s.icon}>
                       <img src={icon} alt="" /> <span>Клиника Хас Лев</span>
                     </div>
@@ -74,39 +72,36 @@ function Doctor() {
                 <div className={s.jobInfo}>
                   <div className={s.infoGroup}>
                     <span>График работы:</span>
-                    <span>{item.schedule}</span>
+                    <span>9:00 - 16:00</span>
                   </div>
+
                   <div className={s.infoGroup}>
-                    <span>Стаж работы:</span>
-                    <span>20 лет</span>
+                    <span>Наш адресс:</span>
+                    <span>Хасавюртар базар</span>
                   </div>
                 </div>
               </div>
               <div className={s.records}>
                 <div className={s.recordsTitle}>
-                  <h5>Дата</h5>
-                  <input type="date" />
-                  <span>&times;</span>
+                  <h5>Мои записи</h5>
                 </div>
                 <table>
                   <thead>
                     <tr>
                       <th>№</th>
-                      <th>ФИО</th>
+                      <th>ФИО Врача</th>
+                      <th>Должность</th>
                       <th>Время записи</th>
                       <th>Дата</th>
-                      <th>Кончание</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>1</td>
                       <td>Жалмурзбек Картофанович Гаджимурадов</td>
+                      <td>Практолог</td>
                       <td>13:30</td>
                       <td>Тахан 1уьйран</td>
-                      <td>
-                        <button>Кончить</button>
-                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -119,4 +114,4 @@ function Doctor() {
   );
 }
 
-export default Doctor;
+export default User;
