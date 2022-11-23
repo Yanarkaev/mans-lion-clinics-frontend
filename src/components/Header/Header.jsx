@@ -45,6 +45,12 @@ const Header = () => {
             </Link>
           </Nav>
         </Navbar.Collapse>
+        {token && (
+          <Link to="/account">
+            <div className={styles.account}></div>
+          </Link>
+        )}
+
         <Button className={styles.signinBtn} variant="success">
           {isToken ? (
             <Link to="/" onClick={handleLogOut}>
@@ -54,10 +60,6 @@ const Header = () => {
             <Link to="/signin">Войти</Link>
           )}
         </Button>
-
-        <Link to="/account">
-          <div className={styles.account}></div>
-        </Link>
       </Container>
     </Navbar>
   );
