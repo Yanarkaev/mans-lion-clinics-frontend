@@ -1,0 +1,97 @@
+.wrapper {
+  padding-top: 14vh;
+  .adminCard {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.408);
+    max-width: 800px;
+    border-radius: 10px;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 20px;
+    overflow: hidden;
+
+    .avatar {
+      width: 300px;
+      height: 300px;
+      background-color: rgb(206, 206, 206);
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .adminInfo {
+      margin-left: 20px;
+
+      div {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .invationWrapper {
+    box-sizing: content-box;
+    background-color: rgb(243, 243, 243);
+    border-radius: 5px;
+    padding: 100px;
+    max-width: 500px;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      margin-top: 10px;
+      border: 0;
+      padding: 10px;
+      margin: 0 5px;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .invationInner {
+      margin-top: 20px;
+
+      input {
+        width: 100%;
+        font-size: 18px;
+        border: 2px solid rgb(5, 66, 131);
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .sendWrapper {
+        margin-top: 10px;
+
+        .send {
+          background-color: rgb(94, 131, 255);
+        }
+
+        .gener {
+          background-color: rgb(42, 132, 42);
+        }
+      }
+    }
+
+    .choiceWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h5 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 10px;
+      }
+      .toggleJob {
+        background-color: rgb(5, 66, 131);
+        padding: 10px 0;
+        width: 100px;
+      }
+    }
+  }
+}
