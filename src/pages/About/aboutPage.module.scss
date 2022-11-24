@@ -1,5 +1,14 @@
 .aboutWrapper {
   animation: 2s show ease;
+  overflow: hidden;
+  .titleContainer {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.475);
+    padding: 10px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    // background: linear-gradient(90deg, #69b7eb, #235fdf98);
+    // color: #fff;
+  }
   .title {
     height: 400px;
     position: relative;

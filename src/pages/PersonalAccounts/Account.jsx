@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import AdminPage from "../AdminPage/AdminPage";
 import Doctor from "./Doctor/Doctor";
 import User from "./User/User";
 
@@ -29,6 +30,9 @@ function Account() {
   }
   if (parsedJwt.role === "user") {
     return <User />;
+  }
+  if (parsedJwt.role === "admin") {
+    return <AdminPage />;
   }
 }
 

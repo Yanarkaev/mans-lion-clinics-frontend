@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import s from "./adminPage.module.scss";
-import AdminChat from './../../components/AdminChat/AdminChat';
+import AdminChat from "./../../components/AdminChat/AdminChat";
 
 const AdminPage = () => {
   const [job, setJob] = useState(false);
@@ -54,7 +54,7 @@ const AdminPage = () => {
         </div>
       </div>
 
-     <AdminChat />
+      <AdminChat />
     </div>
   );
 };

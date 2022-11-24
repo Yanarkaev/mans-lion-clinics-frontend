@@ -1,7 +1,30 @@
 import React from "react";
 import styles from "./aboutPage.module.scss";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
+  const textAnimationLeft = {
+    hidden: {
+      x: -1000,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 40, duration: 2 },
+    },
+  };
+  const textAnimationRight = {
+    hidden: {
+      x: 1000,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 40, duration: 5 },
+    },
+  };
   return (
     <div className={styles.aboutWrapper}>
       <div className={styles.title}>
@@ -9,7 +32,13 @@ const AboutPage = () => {
       </div>
 
       <div className={styles.main}>
-        <div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={textAnimationLeft}
+          viewport={{ once: true }}
+          className={styles.titleContainer}
+        >
           <h1>Заголовок 1</h1>
           <p>
             Клиника МансурЛев – сеть частных медицинских центров, которая
@@ -22,9 +51,15 @@ const AboutPage = () => {
             медицинскую помощь экспертного уровня взрослым и детям с первых дней
             жизни.
           </p>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={textAnimationRight}
+          viewport={{ once: true }}
+          className={styles.titleContainer}
+        >
           <h1>Заголовок 1</h1>
           <p>
             Клиника МансурЛев – сеть частных медицинских центров, которая
@@ -37,7 +72,7 @@ const AboutPage = () => {
             медицинскую помощь экспертного уровня взрослым и детям с первых дней
             жизни.
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
