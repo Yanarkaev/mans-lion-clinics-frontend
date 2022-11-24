@@ -52,7 +52,6 @@ const AboutPage = () => {
             жизни.
           </p>
         </motion.div>
-
         <motion.div
           initial="hidden"
           whileInView="visible"
