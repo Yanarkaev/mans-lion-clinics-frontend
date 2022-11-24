@@ -76,7 +76,7 @@ const Header = () => {
           <Link to="/account">
             <div className={styles.account}>
               <img
-                src={parsedJwt.role === "doctor" ? `${doctor}` : `${user}`}
+                src={parsedJwt.role === "user" ? `${user}` : `${doctor}`}
                 alt=""
               />
             </div>
