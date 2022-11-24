@@ -11,6 +11,7 @@ import {
 import moment from "moment";
 import Lottie from "lottie-react";
 import errorAnim from "./animation/errorAnim.json";
+import Preloader from "./Preloader/Preloader";
 
 const SingleDoctor = () => {
   const cardAnimation = {
@@ -135,7 +136,7 @@ const SingleDoctor = () => {
     navigate("/account");
   }
   if (loading || !doctor || acceptOrder.length === 0) {
-    return "";
+    return <Preloader />;
   }
 
   return (
@@ -143,30 +144,38 @@ const SingleDoctor = () => {
       {show && (
         <div className={s.modal}>
           <div className={s.order}>
-            <h2>Проверьте данные</h2>
-            <table>
-              <tbody>
-                <tr>
-                  <td>ФИО врача</td>
-                  <td>{doctor.fullName}</td>
-                </tr>
-                <tr>
-                  <td>Должность</td>
-                  <td>{doctor.jobTitle}</td>
-                </tr>
-                <tr>
-                  <td>Время записи</td>
-                  <td>
-                    {recordDay} в {recordTime}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div className={s.btns}>
-              <button onClick={() => setShow(false)}>Изменить</button>
-              <button onClick={handleOrder}>Подтвердить</button>
-            </div>
-            <div>
+            <div className={s.info}>
+              <div className={s.header}>
+                <span>Проверьте данные</span>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "0 1rem",
+                  paddingTop: "1rem",
+                  paddingBottom: "1rem",
+                  boxShadow: "0px -3px 0px 0px rgba(0, 0, 0, 0.2) inset",
+                }}
+              >
+                <div>ФИО врача : </div>
+                <div>{doctor.fullName}</div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "0 1rem",
+                  paddingTop: "1rem",
+                  paddingBottom: "1rem",
+                  boxShadow: "0px -3px 0px 0px rgba(0, 0, 0, 0.2) inset",
+                }}
+              >
+                <div>Время записи :</div>
+                <div style={{ margin: "auto" }}>
+                  {recordDay} в {recordTime}
+                </div>
+              </div>
               {error ? (
                 <div
                   style={{
@@ -176,79 +185,82 @@ const SingleDoctor = () => {
                     justifyContent: "center",
                   }}
                 >
+                  <div style={{ color: "red" }}>{error}</div>
                   <Lottie
                     animationData={errorAnim}
-                    style={{ width: "10rem" }}
+                    style={{
+                      width: "5rem",
+                      marginTop: "auto",
+                      marginBottom: "0",
+                    }}
                   ></Lottie>
-                  <div style={{ color: "red" }}>{error}</div>
                 </div>
               ) : (
                 ""
               )}
             </div>
+
+            <div className={s.btns}>
+              <button onClick={() => setShow(false)}>Изменить</button>
+              <button onClick={handleOrder}>Подтвердить</button>
+            </div>
           </div>
         </div>
       )}
-      {!show && (
-        <>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={cardAnimation}
-            className={s.cardWrapper}
-          >
-            <div className={s.avatar}>
-              <img
-                src={`http://localhost:3001/${doctor.avatarImg}`}
-                alt="Фото"
-              />
-            </div>
-            <div className={s.doctorInfo}>
-              <div>{doctor.fullName}</div>
-              <div>{doctor.jobTitle}</div>
-              <div>В компании с {doctor.birthDay.split("-")[0]} года</div>
-              <div>
-                График работы: с {doctor.schedule.split("-")[0]} до{" "}
-                {doctor.schedule.split("-")[1]}
-              </div>
-            </div>
-          </motion.div>
 
-          <div className={s.entryBlock}>
-            <h1>Запись</h1>
-
-            <div className={s.entryBtns}>
-              <div className={s.dateBlock}>
-                <h2>Дата: </h2>
-                <div className={s.dateBtns}>{handleSchedule()}</div>
-              </div>
-
-              <div className={s.timeBlock}>
-                <h2>Время: </h2>
-
-                <div className={s.timeBtns}>{handleTime()}</div>
-              </div>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "1rem",
-              }}
-            >
-              <button
-                style={{ margin: "auto" }}
-                onClick={() => setShow(true)}
-                disabled={recordTime ? "" : "disabled"}
-              >
-                Подтвердить запись
-              </button>
-            </div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={cardAnimation}
+        className={s.cardWrapper}
+      >
+        <div className={s.avatar}>
+          <img src={`http://localhost:3001/${doctor.avatarImg}`} alt="Фото" />
+        </div>
+        <div className={s.doctorInfo}>
+          <div>{doctor.fullName}</div>
+          <div>{doctor.jobTitle}</div>
+          <div>В компании с {doctor.birthDay.split("-")[0]} года</div>
+          <div>
+            График работы: с {doctor.schedule.split("-")[0]} до{" "}
+            {doctor.schedule.split("-")[1]}
           </div>
-        </>
-      )}
+        </div>
+      </motion.div>
+
+      <div className={s.entryBlock}>
+        <h1>Запись</h1>
+
+        <div className={s.entryBtns}>
+          <div className={s.dateBlock}>
+            <h2>Дата: </h2>
+            <div className={s.dateBtns}>{handleSchedule()}</div>
+          </div>
+
+          <div className={s.timeBlock}>
+            <h2>Время: </h2>
+
+            <div className={s.timeBtns}>{handleTime()}</div>
+          </div>
+        </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "1rem",
+          }}
+        >
+          <button
+            style={{ margin: "auto" }}
+            onClick={() => setShow(true)}
+            disabled={recordTime ? "" : "disabled"}
+          >
+            Подтвердить запись
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

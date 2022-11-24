@@ -11,7 +11,7 @@ import Sad from "./components/Authorization/Sad/Sad";
 import SignUpWorker from "./components/Authorization/SignUpWorker/SignUpWorker";
 import SingleDoctor from "./pages/SingleDoctor/SingleDoctor";
 import ContactsPage from "./pages/Contacts/ContactsPage";
-import AdminPage from './pages/AdminPage/AdminPage';
+import AdminPage from "./pages/AdminPage/AdminPage";
 import Account from "./pages/PersonalAccounts/Account";
 
 function App() {

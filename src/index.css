@@ -6,3 +6,17 @@
   margin: 0 !important;
   margin-right: 0 !important;
 }
+
+body::-webkit-scrollbar {
+  width: 0px; /* width of the entire scrollbar */
+  height: 5px;
+}
+body::-webkit-scrollbar :hover body::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255); /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(3, 28, 88); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(3, 28, 88); /* creates padding around scroll thumb */
+}
