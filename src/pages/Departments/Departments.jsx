@@ -95,15 +95,17 @@ function Departments() {
           </div>
           <div className={s.departmants}>
             {departments.map((item) => {
-              return (
-                <div
-                  onClick={() => setFilter(item._id)}
-                  key={item._id}
-                  className={s.name}
-                >
-                  <span>{item.name}</span>
-                </div>
-              );
+              if (item.name !== "Администрация") {
+                return (
+                  <div
+                    onClick={() => setFilter(item._id)}
+                    key={item._id}
+                    className={s.name}
+                  >
+                    <span>{item.name}</span>
+                  </div>
+                );
+              }
             })}
           </div>
         </motion.aside>
