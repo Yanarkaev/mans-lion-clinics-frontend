@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import s from "./adminPage.module.scss";
-import AdminChat from './../../components/AdminChat/AdminChat';
+import AdminChat from "./../../components/AdminChat/AdminChat";
+import { useDispatch } from 'react-redux';
+import { addCode } from "../../features/userSlice";
 
 const AdminPage = () => {
-  const [job, setJob] = useState(false);
+  const [job, setJob] = useState("6373435d725a07b0fb7bfc7d");
   const [invCode, setInvCode] = useState("");
-
+const dispatch = useDispatch()
   const generCode = () => {
     const symbols =
       "123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
@@ -16,7 +18,10 @@ const AdminPage = () => {
     }
     setInvCode(password);
   };
-
+const handleAdd = () => {
+  console.log(1);
+dispatch(addCode({id: job, code : invCode }))
+}
   return (
     <div className={s.wrapper}>
       <div className={s.adminCard}>
@@ -24,7 +29,6 @@ const AdminPage = () => {
           <img src="" alt="твоя ава, бро" />
         </div>
         <div className={s.adminInfo}>
-          <div>твоё имя, бро</div>
           <div>ты админ, бро</div>
         </div>
       </div>
@@ -39,7 +43,7 @@ const AdminPage = () => {
           />
 
           <div className={s.sendWrapper}>
-            <button className={s.send}>Отправить</button>
+            <button className={s.send} onClick={handleAdd} disabled={ invCode ? '' : 'disabled'}>Отправить</button>
             <button className={s.gener} onClick={generCode}>
               Сгенерировать
             </button>
@@ -48,13 +52,22 @@ const AdminPage = () => {
 
         <div className={s.choiceWrapper}>
           <h5>Должность:</h5>
-          <button className={s.toggleJob} onClick={() => setJob(!job)}>
-            {job ? "Врач" : "Админ"}
+          <button
+            className={s.toggleJob}
+            onClick={() =>
+              setJob(
+                job === "6373435d725a07b0fb7bfc7d"
+                  ? "63734488230a4b48a0f3a02f"
+                  : "6373435d725a07b0fb7bfc7d"
+              )
+            }
+          >
+            {job === "6373435d725a07b0fb7bfc7d" ? "Админ" : "Доктор"}
           </button>
         </div>
       </div>
-
-     <AdminChat />
+, 
+      <AdminChat />
     </div>
   );
 };
