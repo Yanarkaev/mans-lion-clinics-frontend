@@ -87,6 +87,16 @@ export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
     thunkAPI.rejectWithValue(error);
   }
 });
+
+export const getChatUsers = createAsyncThunk("chatUsers/fetch", async (_, thunkAPI) => {
+  try {
+    const res = await fetch("//localhost:3001/user/users/chatusers");
+    return res.json();
+  } catch (error) {
+    thunkAPI.rejectWithValue(error);
+  }
+});
+
 export const getInfoDoctor = createAsyncThunk(
   "doctor/fetch",
   async (id, thunkAPI) => {
@@ -178,6 +188,28 @@ export const removeRecord = createAsyncThunk(
   }
 );
 
+export const addCode = createAsyncThunk(
+  "code/patch",
+  async ({id, code}, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:3001/invites/${id}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+list: code
+        }),
+      });
+      if (res.error) {
+        return thunkAPI.rejectWithValue(res.error);
+      }
+      return res.json();
+    }catch (error) {
+    thunkAPI.rejectWithValue(error);
+  }})
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -193,6 +225,7 @@ export const userSlice = createSlice({
     },
   },
 
+  
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state, action) => {
@@ -235,6 +268,23 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
+      // получить юзеров чата
+
+      .addCase(getChatUsers.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getChatUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+        state.acceptOrder = false;
+      })
+      .addCase(getChatUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      
       .addCase(getInfoDoctor.pending, (state, action) => {
         state.loading = true;
         state.error = null;
@@ -276,7 +326,21 @@ export const userSlice = createSlice({
         state.error = null;
         state.recordByDoctor.push(action.payload);
         state.acceptOrder = true;
+        
       })
+      .addCase(addCode.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(addCode.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addCode.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      
       .addCase(getRecordsByRole.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;

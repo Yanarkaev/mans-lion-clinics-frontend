@@ -3,6 +3,12 @@ import s from "./Doctor.module.scss";
 import icon from "../../../assets/PersonalAccounts/icon.svg";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../../features/userSlice";
+function Doctor() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
 import {
   getRecordsByRole,
   getUsers,
@@ -56,7 +62,7 @@ function Doctor() {
     dispatch(removeRecord(id));
   };
 
-  return (
+return (
     <motion.div
       initial="hidden"
       whileInView="visible"
@@ -99,6 +105,8 @@ function Doctor() {
               <div className={s.records}>
                 <div className={s.recordsTitle}>
                   <h5>Дата</h5>
+                  <input type="date" />
+                  <span>&times;</span>
                   <input
                     type="date"
                     value={filter}
@@ -113,6 +121,19 @@ function Doctor() {
                       <th>ФИО</th>
                       <th>Время записи</th>
                       <th>Дата</th>
+                      <th>Кончание</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Жалмурзбек Картофанович Гаджимурадов</td>
+                      <td>13:30</td>
+                      <td>Тахан 1уьйран</td>
+                      <td>
+                        <button>Кончить</button>
+                      </td>
+                    </tr>
                       <th>Закончить</th>
                     </tr>
                   </thead>

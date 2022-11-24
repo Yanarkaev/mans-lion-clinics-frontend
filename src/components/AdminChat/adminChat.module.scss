@@ -19,11 +19,17 @@
     justify-content: center;
     font-weight: 600;
     font-size: 23px;
+    margin: 0 auto;
   }
 
   .username {
     font-weight: 600;
     color: #fff;
+    // margin: 0 auto;
+    // width: 100%;
+    // margin: 0 auto;
+    // text-align: center;
+    // display: block;
   }
 
   .usersWrapper {
@@ -44,7 +50,7 @@
     .user {
       display: flex;
       align-items: center;
-
+    //   width: 200px;
       padding: 10px 15px;
       cursor: pointer;
       transition: 0.2s;
@@ -78,7 +84,7 @@
 
     .messages {
       position: relative;
-      padding: 50px 15px 60px;
+      padding: 70px 15px 60px;
       overflow-y: scroll;
       max-height: 100%;
 
