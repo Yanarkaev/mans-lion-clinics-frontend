@@ -2,6 +2,8 @@ import { useTime } from "framer-motion";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../features/userSlice";
+import React from "react";
+import AdminPage from "../AdminPage/AdminPage";
 import Doctor from "./Doctor/Doctor";
 import User from "./User/User";
 
@@ -31,6 +33,9 @@ function Account() {
   }
   if (parsedJwt.role === "user") {
     return <User />;
+  }
+  if (parsedJwt.role === "admin") {
+    return <AdminPage />;
   }
 }
 

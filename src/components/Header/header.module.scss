@@ -7,8 +7,18 @@
   font-size: 20px;
   position: fixed;
   width: 100%;
-  height: 5rem;
+  min-height: 5rem;
   z-index: 100;
+  flex-wrap: wrap !important;
+  .headerLogo {
+    width: 60px;
+    height: 60px;
+    img {
+      width: 100%;
+      height: 100%;
+      transform: scale(-1, 1);
+    }
+  }
   .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -50,6 +60,10 @@
       background-color: rgb(189, 189, 189);
       margin-right: 30px;
       cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

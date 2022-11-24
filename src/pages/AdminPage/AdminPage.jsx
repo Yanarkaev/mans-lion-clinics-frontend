@@ -66,7 +66,6 @@ dispatch(addCode({id: job, code : invCode }))
           </button>
         </div>
       </div>
-, 
       <AdminChat />
     </div>
   );

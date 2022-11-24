@@ -16,7 +16,6 @@ const SignIn = () => {
   const handleSignIn = () => {
     dispatch(signInUser({ login, password }));
   };
-  console.log(signIn);
   useEffect(() => {
     if (signIn) {
       navigate("/");
@@ -54,7 +53,7 @@ const SignIn = () => {
           variant="primary"
           style={{ marginTop: "0.5rem" }}
           onClick={handleSignIn}
-          disabled={password.length > 5 && login.length > 5 ? "" : "true"}
+          disabled={password.length > 5 && login.length > 5 ? "" : "disabled"}
         >
           Подтвердить
         </Button>
