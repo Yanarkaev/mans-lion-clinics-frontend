@@ -41,6 +41,7 @@ function User() {
   }
   const parsedJwt = parseJwt(token);
 
+  console.log(records);
   const textAnimation = {
     hidden: {
       y: 100,
