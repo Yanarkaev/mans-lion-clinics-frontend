@@ -40,4 +40,4 @@
 ##### Разработано совместно с:
 
 - [Laziyni](https://github.com/)
-- [Yanarkaev]https://github.com/Yanarkaev)
+- [Yanarkaev](https://github.com/Yanarkaev)
