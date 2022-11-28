@@ -130,7 +130,7 @@ const SignUp = () => {
           <div className={s.inputText}>
             <input
               type="text"
-              placeholder="Фамилия Имя отчество"
+              placeholder="Фамилия Имя Отчество"
               value={fullName}
               onChange={(e) =>
                 setFullName(e.target.value.replace(/^[a-zA-Z0-9]+$/, ""))

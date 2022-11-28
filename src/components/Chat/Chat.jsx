@@ -37,7 +37,6 @@ const Chat = () => {
   };
 
   const parsedJwt = parseJwt(token);
-  console.log(parsedJwt);
 
   useEffect(() => {
     dispatch(
@@ -70,7 +69,6 @@ const Chat = () => {
         message: messageText,
       })
     );
-    console.log(parsedJwt);
   };
 
   const handleTypeMessage = (e) => {
@@ -82,12 +80,10 @@ const Chat = () => {
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
-        console.log(msg);
         setArrivalMessage({ myself: false, message: msg });
       });
     }
   });
-  console.log(socket.current)
 
   return (
     <div className={s.chatWrapper}>

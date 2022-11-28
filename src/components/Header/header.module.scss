@@ -7,7 +7,7 @@
   font-size: 20px;
   position: fixed;
   width: 100%;
-  min-height: 5rem;
+  min-height: 4rem;
   z-index: 100;
   flex-wrap: wrap !important;
   .headerLogo {
@@ -46,8 +46,14 @@
       font-size: 18px;
       padding: 7px 20px;
       transition: 0.3s;
-      background-color: rgb(0, 123, 6);
+      background-color: #009a1fb1;
       font-weight: 500;
+      border: 0;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #005d13;
+      }
       a {
         text-decoration: none;
         color: white !important;

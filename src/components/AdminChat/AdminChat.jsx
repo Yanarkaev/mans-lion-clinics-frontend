@@ -37,13 +37,11 @@ const AdminChat = () => {
   };
 
   const parsedJwt = parseJwt(token);
-  console.log(parsedJwt);
 
   useEffect(() => {
     if (selectedUser) {
       socket.current = io("http://localhost:3001");
       socket.current.emit("addUser", selectedUser._id);
-      console.log(socket);
     }
   });
 
@@ -91,7 +89,6 @@ const AdminChat = () => {
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
-        console.log(msg);
         setArrivalMessage({ myself: false, message: msg });
       });
     }

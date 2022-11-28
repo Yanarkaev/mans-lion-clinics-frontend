@@ -5,8 +5,11 @@ import s from "./contacts.module.scss";
 import { ReactComponent as FacebookIcon } from "../../assets/Contacts/facebook.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/Contacts/twitter.svg";
 import { ReactComponent as InstaIcon } from "../../assets/Contacts/instagram.svg";
+import { useSelector } from "react-redux";
 
 const ContactsPage = () => {
+  const token = useSelector((state) => state.user.token);
+
   return (
     <div className={s.wrapper}>
       <div className={s.intro}>
@@ -14,10 +17,12 @@ const ContactsPage = () => {
       </div>
 
       <div className={s.contactsInner}>
-        <div className={s.chatWrapper}>
-          <h2>Наш живой чат</h2>
-          <Chat />
-        </div>
+        {token && (
+          <div className={s.chatWrapper}>
+            <h2>Чат поддержки</h2>
+            <Chat />
+          </div>
+        )}
 
         <div className={s.contactMeans}>
           <h2>Средства связи</h2>

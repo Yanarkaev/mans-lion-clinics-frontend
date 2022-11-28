@@ -76,7 +76,7 @@ const SingleDoctor = () => {
     return times.map((item) => {
       let isActive =
         moment(item, "HH:mm").format("HH:mm") === recordTime
-          ? { background: "rgb(47, 71, 131)" }
+          ? { background: "#009a1fb1" }
           : {};
       let isDisabled = closeDay.filter(
         (elem) =>
@@ -113,7 +113,7 @@ const SingleDoctor = () => {
     return days.map((item) => {
       let isActive =
         moment(item, "YYYY.MM.DD").format("YYYY.MM.DD") === recordDay
-          ? { background: "rgb(47, 71, 131)" }
+          ? { background: "#009a1fb1" }
           : {};
 
       return (
@@ -229,8 +229,6 @@ const SingleDoctor = () => {
       </motion.div>
 
       <div className={s.entryBlock}>
-        <h1>Запись</h1>
-
         <div className={s.entryBtns}>
           <div className={s.dateBlock}>
             <h2>Дата: </h2>
@@ -253,7 +251,7 @@ const SingleDoctor = () => {
           }}
         >
           <button
-            style={{ margin: "auto" }}
+            style={{ margin: "auto", backgroundColor: "#009a1fb1" }}
             onClick={() => setShow(true)}
             disabled={recordTime ? "" : "disabled"}
           >

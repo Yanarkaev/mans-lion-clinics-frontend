@@ -14,7 +14,8 @@ function Departments() {
   const navigate = useNavigate();
   const loadingUser = useSelector((state) => state.user.loading);
   const loadingDep = useSelector((state) => state.departments.loading);
-  console.log(loadingUser, loadingDep);
+  const [selectDep, setSelectDep] = useState("");
+
   useEffect(() => {
     dispatch(getDepartments());
     dispatch(getUsers());
@@ -90,17 +91,31 @@ function Departments() {
           variants={textAnimation}
           className={s.aside}
         >
-          <div onClick={() => setFilter("")} className={s.logo}>
+          <div
+            onClick={() => {
+              setFilter("");
+              setSelectDep("");
+            }}
+            className={s.logo}
+          >
             <img src={icon} alt="" />
           </div>
           <div className={s.departmants}>
-            {departments.map((item) => {
+            {departments.map((item, i) => {
               if (item.name !== "Администрация") {
                 return (
                   <div
-                    onClick={() => setFilter(item._id)}
+                    onClick={() => {
+                      setFilter(item._id);
+                      setSelectDep(i);
+                    }}
                     key={item._id}
                     className={s.name}
+                    style={
+                      selectDep === i
+                        ? { background: "#fff", color: "#000" }
+                        : {}
+                    }
                   >
                     <span>{item.name}</span>
                   </div>

@@ -36,15 +36,11 @@ function User() {
 
     return JSON.parse(jsonPayload);
   };
-
-  const parsedJwt = parseJwt(token);
-
   if (loading) {
     return "";
   }
   const parsedJwt = parseJwt(token);
 
-  console.log(records);
   const textAnimation = {
     hidden: {
       y: 100,
@@ -71,7 +67,6 @@ function User() {
               <div className={s.card}>
                 <div className={s.doctorInfo}>
                   <div className={s.photo}>
-                    <img src="" alt="" />
                     <Lottie animationData={avatar} />
                   </div>
                   <div className={s.description}>
@@ -109,13 +104,6 @@ function User() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Жалмурзбек Картофанович Гаджимурадов</td>
-                      <td>Практолог</td>
-                      <td>13:30</td>
-                      <td>Тахан 1уьйран</td>
-                    </tr>
                     {records.map((item, index) => {
                       return (
                         <tr key={item._id}>
@@ -137,6 +125,7 @@ function User() {
             </div>
           );
         }
+        return "";
       })}
     </motion.div>
   );

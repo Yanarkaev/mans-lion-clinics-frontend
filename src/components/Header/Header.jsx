@@ -72,9 +72,6 @@ const Header = () => {
             </Link>
           </Nav>
         </Navbar.Collapse>
-        {token && (
-          <Link to="/account">
-            <div className={styles.account}></div>
         {isToken && (
           <Link to="/account">
             <div className={styles.account}>
