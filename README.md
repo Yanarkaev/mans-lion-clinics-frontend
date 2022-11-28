@@ -2,11 +2,11 @@
 
 **frontend**
 
-### Decription
+## Decription
 
 Это сайт для клиники с возможность онлайн записи
 
-### Features
+## Features
 
 1. Три роли с уникальным функционалом:
 
@@ -41,5 +41,5 @@
 
 ##### Разработано совместно с:
 
-- [Laziyni](https://github.com/)
-- [Yanarkaev](https://github.com/Yanarkaev)
+1. [Laziyni](https://github.com/)
+2. [Yanarkaev](https://github.com/Yanarkaev)
