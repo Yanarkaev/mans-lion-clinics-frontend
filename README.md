@@ -6,6 +6,17 @@
 
 Это сайт для клиники с возможностью онлайн записи.
 
+## Stack
+
+- React
+- Redux toolkit
+- react-router-dom
+- Bootstrap
+- moment
+- framer-motion
+- node-sass
+- ymaps
+
 ## Features
 
 1. Три роли с уникальным функционалом:
@@ -43,3 +54,5 @@
 
 1. **[Laziyni](https://github.com/)**
 2. **[Yanarkaev](https://github.com/Yanarkaev)**
+
+[![Главная страница:]('')

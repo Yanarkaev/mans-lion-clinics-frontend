@@ -12,7 +12,8 @@ function MainPage() {
 
       <div className={s.marqueeContainer}>
         <p className={s.marquee}>
-          Небитый не крашенный приор ю юхкш, связи довл &#160;
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi,
+          distinctio? Officia est perspiciatis iusto rem beatae nostrum.
         </p>
       </div>
       <MainFooter />
