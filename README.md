@@ -57,4 +57,4 @@
 
 ### Главная страница:
 
-<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-main-page.gif" width="40" height="40" />
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-main-page.gif" width="100%" height="40" />
