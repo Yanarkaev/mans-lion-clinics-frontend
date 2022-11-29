@@ -4,8 +4,7 @@
 
 ## Decription
 
-Сайт клиники с возможностью онлайн записи.
-[переход на backend](https://github.com/timurKhaky/mans-lion-clinics-backend)
+Сайт клиники с возможностью онлайн записи.[переход на backend](https://github.com/timurKhaky/mans-lion-clinics-backend)
 
 ## Stack
 
