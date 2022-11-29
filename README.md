@@ -55,4 +55,6 @@
 1. **[Laziyni](https://github.com/)**
 2. **[Yanarkaev](https://github.com/Yanarkaev)**
 
-[![Главная страница:]('https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-main-page.gif')
+### Главная страница:
+
+![Главная](https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-main-page.gif "Главная"
