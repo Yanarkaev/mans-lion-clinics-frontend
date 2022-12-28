@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Веб-сайт клиники
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**frontend**
 
-## Available Scripts
+## Decription
 
-In the project directory, you can run:
+Сайт клиники с возможностью онлайн записи.[переход на backend](https://github.com/timurKhaky/mans-lion-clinics-backend)
 
-### `npm start`
+## Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Redux toolkit
+- react-router-dom
+- Bootstrap
+- moment
+- framer-motion
+- node-sass
+- ymaps
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+1. Три роли с уникальным функционалом:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Пользователь
+- Доктор
+- Администратор
 
-### `npm run build`
+2. Авторизация
+3. Запись к врачу
+4. Уникальные личные кабинеты
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Подробнее о ролях
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Пользователь:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Стандартная регистрация.
+- Возможность записи к врачу.
+- Вывод списка записей в личном кабинете.
+- Чат поддержки.
 
-### `npm run eject`
+2. **Доктор:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Регистрация по уникальному одноразовому коду.
+- Вывод списка записей с фильтрацией по датам.
+- Возможность завершить приём пациента.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Админ:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Регистрация по уникальному одноразовому коду.
+- Возможность добавления пригласительного кода для сотрудника.
+- Чат поддержки.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+##### Разработано совместно с:
 
-## Learn More
+1. **[Laziyni](https://github.com/Laziyni)**
+2. **[timurKhaky](https://github.com/timurKhaky)**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Главная страница:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-main-page.gif" width="100%"  heigth="100%" />
 
-### Code Splitting
+### Список врачей:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-doctors-page.gif" width="100%"  heigth="100%" />
 
-### Analyzing the Bundle Size
+### Регистрация:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-auth-page.gif" width="100%"  heigth="100%" />
 
-### Making a Progressive Web App
+### Запись на приём:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-record-page.gif" width="100%"  heigth="100%" />
 
-### Advanced Configuration
+### Личный кабинет врача:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="https://github.com/timurKhaky/mans-lion-clinics-frontend/blob/main/example/demo-doctor-records-page.gif" width="100%"  heigth="100%" />
